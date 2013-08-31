@@ -1,0 +1,44 @@
+
+Simple Python based file transfer to/from Amazon S3.  Uses the boto
+python library for AWS S3.  The utility assumes your S3 credentials
+are stored in $HOME/.boto in the format
+
+[Credentials]
+aws_access_key_id = key
+aws_secret_access_key = secret
+
+The AWS IAM user must have these permissions at the user (not bucket) level:
+
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Action": [
+            "s3:*"
+          ],
+          "Sid": "Stmt1377903120000",
+          "Resource": [
+            "arn:aws:s3:::thebucket/*"
+          ],
+          "Effect": "Allow"
+        }
+      ]
+    }
+
+and
+
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Action": [
+            "s3:*"
+          ],
+          "Sid": "Stmt1377903717000",
+          "Resource": [
+            "arn:aws:s3:::thebucket"
+          ],
+          "Effect": "Allow"
+        }
+      ]
+    }
