@@ -44,6 +44,9 @@ import sys
 import boto
 from boto.s3.key import Key
 
+GET = '--get'
+PUT = '--put'
+
 
 def transfer_file(bucket_name, file_name, operation):
     # credentials are in ~/.boto
@@ -54,8 +57,8 @@ def transfer_file(bucket_name, file_name, operation):
         sys.exit(0)
     key = Key(bucket)
     key.key = file_name
-    file_mode = "r" if operation == "--put" else "w"
-    function = key.get_contents_to_file if operation == "--get" else key.set_contents_from_file
+    file_mode = "r" if operation == PUT else "w"
+    function = key.get_contents_to_file if operation == GET else key.set_contents_from_file
     fp = file(file_name, file_mode)
     function(fp)
     fp.close()
@@ -66,8 +69,8 @@ def parse_arguments():
     import argparse
 
     parser = argparse.ArgumentParser(description='Simple S3 file transfer tool')
-    parser.add_argument('--get', action="store_true", help='get the file')
-    parser.add_argument('--put', action="store_true", help='put the file')
+    parser.add_argument(GET, action="store_true", help='get the file')
+    parser.add_argument(PUT, action="store_true", help='put the file')
     parser.add_argument('--file', default='', required=True, help='file name to get')
     parser.add_argument('--bucket', default='', required=True, help='bucket name')
     args = parser.parse_args()
@@ -77,7 +80,7 @@ def parse_arguments():
     if not args.get and not args.put:
         print "At least one of --get or --put must be specified"
         sys.exit(0)
-    operation = "--get" if args.get else "--put"
+    operation = GET if args.get else PUT
     args.operation = operation
     return args
 
