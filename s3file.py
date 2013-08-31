@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/local/bin/python
 
 '''
 The AWS IAM user needs these permissions. Note these permissions
@@ -50,7 +50,7 @@ def transfer_file(bucket_name, file_name, operation):
     conn = boto.connect_s3()
     bucket = conn.lookup(bucket_name)
     if bucket is None:
-        print "no bucket"
+        print "no such bucket or permissions problem on bucket %s" % bucket_name
         sys.exit(0)
     k = Key(bucket)
     k.key = file_name
