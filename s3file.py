@@ -48,14 +48,14 @@ GET = '--get'
 PUT = '--put'
 
 
-def transfer_file(bucket_name, file_name, operation):
+def transfer_file(bucket_name, file_key, file_name, operation):
     # credentials are in ~/.boto
     conn = boto.connect_s3()
     bucket = conn.lookup(bucket_name)
     if bucket is None:
         print "no such bucket or permissions problem on bucket %s" % bucket_name
         sys.exit(0)
-    key = Key(bucket, file_name)
+    key = Key(bucket, file_key)
     file_mode = "r" if operation == PUT else "w"
     function = key.get_contents_to_file if operation == GET else key.set_contents_from_file
     fp = file(file_name, file_mode)
@@ -70,8 +70,9 @@ def parse_arguments():
     parser = argparse.ArgumentParser(description='Simple S3 file transfer tool')
     parser.add_argument(GET, action="store_true", help='get the file')
     parser.add_argument(PUT, action="store_true", help='put the file')
-    parser.add_argument('--file', default='', required=True, help='file name to get')
+    parser.add_argument('--file', default='', required=True, help='file name to get or put')
     parser.add_argument('--bucket', default='', required=True, help='bucket name')
+    parser.add_argument('--key', default='', required=True, help='key to store file under')
     args = parser.parse_args()
     if args.get and args.put:
         print "Only one of --get or --put must be specified"
@@ -86,4 +87,4 @@ def parse_arguments():
 
 if __name__ == "__main__":
     options = parse_arguments()
-    transfer_file(options.bucket, options.file, options.operation)
+    transfer_file(options.bucket, options.key, options.file, options.operation)

@@ -1,7 +1,14 @@
 
-Simple Python based file transfer to/from Amazon S3.  Uses the boto
-python library for AWS S3.  The utility assumes your S3 credentials
-are stored in $HOME/.boto in the format
+Simple Python based file transfer to/from Amazon S3 that uses the boto
+python library for AWS S3.   Requires Python 2.7 for purposes of using argparse
+command line parsing.
+
+I installed boto like this on the Mac:
+
+    sudo easy_install pip
+    sudo pip install boto
+
+The utility assumes your S3 credentials are stored in $HOME/.boto in the format
 
     [Credentials]
     aws_access_key_id = key
