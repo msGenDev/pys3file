@@ -55,8 +55,7 @@ def transfer_file(bucket_name, file_name, operation):
     if bucket is None:
         print "no such bucket or permissions problem on bucket %s" % bucket_name
         sys.exit(0)
-    key = Key(bucket)
-    key.key = file_name
+    key = Key(bucket, file_name)
     file_mode = "r" if operation == PUT else "w"
     function = key.get_contents_to_file if operation == GET else key.set_contents_from_file
     fp = file(file_name, file_mode)
@@ -83,11 +82,6 @@ def parse_arguments():
     operation = GET if args.get else PUT
     args.operation = operation
     return args
-
-
-class Bunch:
-    def __init__(self, **kwds):
-        self.__dict__.update(kwds)
 
 
 if __name__ == "__main__":
