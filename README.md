@@ -42,3 +42,13 @@ and
         }
       ]
     }
+
+Usage for uploading looks like
+
+   s3file.py --put --file foo.txt --bucket thebucket
+
+and for downloading
+
+s3file.py --get --file foo.txt --bucket thebucket
+
+
