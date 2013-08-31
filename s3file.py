@@ -52,18 +52,13 @@ def transfer_file(bucket_name, file_name, operation):
     if bucket is None:
         print "no such bucket or permissions problem on bucket %s" % bucket_name
         sys.exit(0)
-    k = Key(bucket)
-    k.key = file_name
-    if operation == "--put":
-        fp = file(file_name, "r")
-        k.set_contents_from_file(fp)
-        fp.close()
-    elif operation == "--get":
-        fp = file(file_name, "w")
-        k.get_contents_to_file(fp)
-        fp.close()
-    else:
-        print "unsupported operation: %s" % operation
+    key = Key(bucket)
+    key.key = file_name
+    file_mode = "r" if operation == "--put" else "w"
+    function = key.get_contents_to_file if operation == "--get" else key.set_contents_from_file
+    fp = file(file_name, file_mode)
+    function(fp)
+    fp.close()
     conn.close()
 
 
