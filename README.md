@@ -1,8 +1,9 @@
 
 ## File transfer
 
-This is a simple Python based file transfer utility to get and put files to Amazon S3.  It uses the boto
-python library for AWS S3, and requires Python 2.7 for purposes of using _argparse_ command line parsing.
+This is a simple Python based file transfer utility to get and put files to Amazon S3.  It uses the
+[boto Python library](http://boto.s3.amazonaws.com/s3_tut.html)
+for AWS S3, and requires Python 2.7 for purposes of using _argparse_ command line parsing.
 
 I installed boto like this on the Mac:
 
