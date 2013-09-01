@@ -17,7 +17,8 @@ The utility assumes your AWS IAM credentials are stored in $HOME/.boto in the fo
     aws_secret_access_key = secret
 
 The AWS IAM user that this utility assumes must have the following permissions at the user (not bucket) level.
-Assuming the bucket name is _thebucket_, for object read/write within the bucket
+Assuming [the bucket exists](http://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html) and its name
+is _thebucket_, for object read/write within the bucket
 
     {
       "Version": "2012-10-17",
