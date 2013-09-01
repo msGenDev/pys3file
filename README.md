@@ -63,8 +63,8 @@ and for downloading
 
 ## Encrypted file wrapper
 
-Also included is a shell script _am.sh_ that treats the S3-managed file file as an encrypted text
-file of interest.  Use of  _am.sh_ requires [GnuPG Privacy Guard] http://www.gnupg.org/ be installed,
+Also included is a shell script _am.sh_ that treats the S3-managed file as an encrypted text
+file of interest.  Use of  _am.sh_ requires [GnuPG Privacy Guard](http://www.gnupg.org) be installed,
 that you have at least one keypair, and that a $HOME/.bucketrc file holding the bucket, key, and
 GnuPG recipient.
 
