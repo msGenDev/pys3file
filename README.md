@@ -54,18 +54,21 @@ and
 
 Usage for uploading looks like
 
-    s3file.py --put --file foo.txt --bucket thebucket
+    s3file.py --put --file /tmp/foo.txt --bucket thebucket --key thekey
 
 and for downloading
 
-    s3file.py --get --file foo.txt --bucket thebucket
+    s3file.py --get --file /tmp/foo.txt --bucket thebucket --key thekey
 
+The PUT operation expects the file denoted by _--file_ to exist, and stores it in _thebucket:thekey_.
+The GET operation expects the content _thebucket:thekey_ to exist, and stores it in the file denoted
+by _--file_.
 
 ## Encrypted file wrapper
 
-Also included is a shell script _am.sh_ that treats the S3-managed file as an encrypted text
-file of interest.  Use of  _am.sh_ requires [GnuPG Privacy Guard](http://www.gnupg.org) be installed,
-that you have at least one keypair, and that a $HOME/.bucketrc file holding the bucket, key, and
+Also included is a shell script _am.sh_ that wraps the file transfer above to manage an encrypted text file of
+interest.  Use of  _am.sh_ requires [GnuPG Privacy Guard](http://www.gnupg.org) be installed,
+that you have at least one GnuPG keypair, and that a $HOME/.bucketrc file exists holding the bucket, key, and
 GnuPG recipient.
 
 Here is a sample .bucketrc file
