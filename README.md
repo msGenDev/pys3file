@@ -16,8 +16,7 @@ The utility assumes your S3 credentials are stored in $HOME/.boto in the format
     aws_access_key_id = key
     aws_secret_access_key = secret
 
-The AWS IAM user that this utility assumes must have these permissions at the user (not bucket) level.
-
+The AWS IAM user that this utility assumes must have the following permissions at the user (not bucket) level.
 Assuming the bucket name is _thebucket_, for bucket listing:
 
     {
