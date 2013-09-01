@@ -1,44 +1,5 @@
 #!/usr/local/bin/python
 
-'''
-The AWS IAM user needs these permissions. Note these permissions
-are set on the user, not the bucket.
-
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": [
-        "s3:*"
-      ],
-      "Sid": "Stmt1377903120000",
-      "Resource": [
-        "arn:aws:s3:::thebucket/*"
-      ],
-      "Effect": "Allow"
-    }
-  ]
-}
-
-and
-
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": [
-        "s3:*"
-      ],
-      "Sid": "Stmt1377903717000",
-      "Resource": [
-        "arn:aws:s3:::thebucket"
-      ],
-      "Effect": "Allow"
-    }
-  ]
-}
-'''
-
 import sys
 from functools import partial
 
