@@ -2,15 +2,14 @@
 ## File transfer
 
 This is a simple Python based file transfer utility to get and put files to Amazon S3.  It uses the boto
-python library for AWS S3.   It requires Python 2.7 for purposes of using argparse
-command line parsing.
+python library for AWS S3, and requires Python 2.7 for purposes of using _argparse_ command line parsing.
 
 I installed boto like this on the Mac:
 
     sudo easy_install pip
     sudo pip install boto
 
-The utility assumes your S3 credentials are stored in $HOME/.boto in the format
+The utility assumes your AWS IAM credentials are stored in $HOME/.boto in the format
 
     [Credentials]
     aws_access_key_id = key
@@ -79,15 +78,15 @@ Here is a sample .bucketrc file
     RECIPIENT="Bob Loblaw"
 
 where _BUCKET_ is the S3 bucket that holds the file of interest, _KEY_ is the key under which the file of
-interest is held in the S3 bucket, and _RECIPIENT_ is the GnuPG recipient, used to select the
-GnuPG key with which to encrypt and decrypt the file of interest.
+interest is held in the S3 bucket, and _RECIPIENT_ is the GnuPG recipient.  The recipient is used to select from your
+GnuPG keyring the public key with which to encrypt the file of interest.
 
 Run am.sh with no arguments:
 
     am.sh
 
 This results in the encrypted file being fetched from S3, decrypted with GnuPG, opened in vi and potentially
- modified, followed by
-re-encrypting the edited file and putting back to S3.  All temporary files are named on the fly using
-_mktemp_ and are removed after the session using _rm -P ..._, where _-P_ overwrites the file data before the file
-is unlinked.  During encryption and decryption, GnuPG will prompt you for your passphrase when it needs it.
+modified, followed by re-encrypting the edited file and putting back to S3.  All temporary files are named on the
+fly using _mktemp_ and are removed after the session using _rm -P ..._, where _-P_ overwrites the file data
+before the file is unlinked.  During encryption and decryption, GnuPG will prompt you for your passphrase when
+it needs it.
