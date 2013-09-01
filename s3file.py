@@ -33,7 +33,7 @@ def parse_arguments():
     parser = argparse.ArgumentParser(description='Simple S3 file transfer tool')
     parser.add_argument(GET, action="store_true", help='get the file')
     parser.add_argument(PUT, action="store_true", help='put the file')
-    parser.add_argument('--file', default='', required=True, help='file name to get or put')
+    parser.add_argument('--file', default='', required=True, help='file to get or put')
     parser.add_argument('--bucket', default='', required=True, help='bucket name')
     parser.add_argument('--key', default='', required=True, help='key to store file under')
     args = parser.parse_args()

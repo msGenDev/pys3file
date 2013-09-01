@@ -9,7 +9,7 @@ DECRYPTED_FILE=$(mktemp /tmp/am.XXXX)
 
 ./s3file.py --get --bucket $BUCKET --key $KEY --file ${DOWNLOAD_FILE}
 if [ $? != 0 ]; then
-    echo "s3file exited abnormally"
+   echo "s3file exited abnormally"
    exit -1
 fi
 
