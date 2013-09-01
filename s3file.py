@@ -12,16 +12,14 @@ ERROR = -1
 
 
 def transfer_file(bucket_name, file_key, file_name, operation):
-    # credentials are in ~/.boto
     conn = boto.connect_s3()
     bucket = conn.lookup(bucket_name)
     if bucket is None:
         print "no such bucket or permissions problem on bucket %s" % bucket_name
         sys.exit(ERROR)
     key = Key(bucket, file_key)
-    file_mode = "r" if operation == PUT else "w"
     function = key.get_contents_to_file if operation == GET else partial(key.set_contents_from_file, encrypt_key=True)
-    fp = file(file_name, file_mode)
+    fp = file(file_name, "r" if operation == PUT else "w")
     function(fp)
     fp.close()
     conn.close()
