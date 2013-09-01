@@ -40,6 +40,7 @@ and
 '''
 
 import sys
+from functools import partial
 
 import boto
 from boto.s3.key import Key
@@ -57,7 +58,7 @@ def transfer_file(bucket_name, file_key, file_name, operation):
         sys.exit(0)
     key = Key(bucket, file_key)
     file_mode = "r" if operation == PUT else "w"
-    function = key.get_contents_to_file if operation == GET else key.set_contents_from_file
+    function = key.get_contents_to_file if operation == GET else partial(key.set_contents_from_file, encrypt_key=True)
     fp = file(file_name, file_mode)
     function(fp)
     fp.close()
