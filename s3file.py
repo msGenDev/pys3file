@@ -8,6 +8,7 @@ from boto.s3.key import Key
 
 GET = '--get'
 PUT = '--put'
+ERROR = -1
 
 
 def transfer_file(bucket_name, file_key, file_name, operation):
@@ -16,7 +17,7 @@ def transfer_file(bucket_name, file_key, file_name, operation):
     bucket = conn.lookup(bucket_name)
     if bucket is None:
         print "no such bucket or permissions problem on bucket %s" % bucket_name
-        sys.exit(0)
+        sys.exit(ERROR)
     key = Key(bucket, file_key)
     file_mode = "r" if operation == PUT else "w"
     function = key.get_contents_to_file if operation == GET else partial(key.set_contents_from_file, encrypt_key=True)
@@ -38,10 +39,10 @@ def parse_arguments():
     args = parser.parse_args()
     if args.get and args.put:
         print "Only one of --get or --put must be specified"
-        sys.exit(0)
+        sys.exit(ERROR)
     if not args.get and not args.put:
         print "At least one of --get or --put must be specified"
-        sys.exit(0)
+        sys.exit(ERROR)
     operation = GET if args.get else PUT
     args.operation = operation
     return args
