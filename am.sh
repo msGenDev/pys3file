@@ -8,7 +8,7 @@ cleanup() {
 }
 trap cleanup ERR
 
-type gpg > /dev/null
+which gpg > /dev/null
 
 DOWNLOAD_FILE=$(mktemp /tmp/am.XXXX)
 DECRYPTED_FILE=$(mktemp /tmp/am.XXXX)
