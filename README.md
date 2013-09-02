@@ -81,9 +81,9 @@ Here is a sample .amrc file
     KEY=thes3key
     RECIPIENT="Bob Loblaw"
 
-where _BUCKET_ is the S3 bucket that holds the file of interest, _KEY_ is the key under which the file of
-interest is held in the S3 bucket, and _RECIPIENT_ is the GnuPG recipient.  The recipient is used to select from your
-GnuPG keyring the public key with which to encrypt the file of interest.
+where the combination of  _BUCKET:KEY_ is where to store the file of interest and _RECIPIENT_ is the GnuPG
+recipient.  The recipient is a GnuPG concept and its value is used to select from your GnuPG keyring the
+public key with which to encrypt the file content.
 
 Run _am.sh_ with no arguments:
 
