@@ -1,6 +1,8 @@
 #!/bin/sh
 
+# Any command that exits with a nonzero exit code causes the trap to fire.
 set -e
+
 set -u
 
 cleanup() {
@@ -8,6 +10,7 @@ cleanup() {
 }
 trap cleanup ERR
 
+# We need gpg on the path.
 which gpg > /dev/null
 
 DOWNLOAD_FILE=$(mktemp /tmp/am.XXXX)
