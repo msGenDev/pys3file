@@ -65,7 +65,8 @@ and for downloading
 
 The PUT operation expects the file denoted by _--file_ to exist, and uploads the content to _thebucket:thekey_.
 The GET operation expects the content _thebucket:thekey_ to exist, and downloads the content to the file denoted
-by _--file_.
+by _--file_.  Files uploaded to S3 also undergo
+[server-side encryption](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html).
 
 ## Encrypted file wrapper
 
@@ -84,13 +85,13 @@ where _BUCKET_ is the S3 bucket that holds the file of interest, _KEY_ is the ke
 interest is held in the S3 bucket, and _RECIPIENT_ is the GnuPG recipient.  The recipient is used to select from your
 GnuPG keyring the public key with which to encrypt the file of interest.
 
-Run am.sh with no arguments:
+Run _am.sh_ with no arguments:
 
     am.sh
 
 This results in the encrypted file being fetched from S3, decrypted with GnuPG,
 opened [read-only in vi](http://vimdoc.sourceforge.net/htmldoc/starting.html#-R), followed by re-encrypting the
-possibly modified file and putting it back to S3.  All temporary files are named on the
-fly using _mktemp_ and are removed after the session using _rm -P ..._, where _-P_ overwrites the file data
-before the file is unlinked.  During encryption, GnuPG will prompt you for your passphrase when
-it needs it.
+possibly modified file and putting it back to S3.  The downloaded and decrypted files are named on the
+fly using [mktemp](http://unixhelp.ed.ac.uk/CGI/man-cgi?mktemp) and are removed after the session using _rm -P ..._,
+where _-P_ overwrites the file data before the file is unlinked.  During encryption, GnuPG will prompt you for
+your passphrase when it needs it.
