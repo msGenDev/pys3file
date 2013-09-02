@@ -1,5 +1,5 @@
 
-## File transfer
+## Python based Amazon S3 file transfer
 
 This is a simple Python based file transfer utility to get and put files to Amazon S3.  It uses the
 [boto Python library](http://boto.s3.amazonaws.com/s3_tut.html)
