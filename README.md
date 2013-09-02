@@ -1,5 +1,5 @@
 
-## Python based Amazon S3 file transfer
+### Python based Amazon S3 file transfer
 
 This is a simple Python based file transfer utility to get and put files to Amazon S3.  It uses the
 [boto Python library](http://boto.s3.amazonaws.com/s3_tut.html)
@@ -69,7 +69,7 @@ The GET operation expects the content _thebucket:thekey_ to exist, and downloads
 by _--file_.  Files uploaded to S3 also undergo
 [server-side encryption](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html).
 
-## Encrypted file wrapper
+### Encrypted file wrapper
 
 Also included is a shell script _am.sh_ that wraps the file transfer utility above to manage an encrypted text file of
 interest.  Use of  _am.sh_ requires [GnuPG Privacy Guard](http://www.gnupg.org) be installed,
