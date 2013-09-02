@@ -88,8 +88,9 @@ Run am.sh with no arguments:
 
     am.sh
 
-This results in the encrypted file being fetched from S3, decrypted with GnuPG, opened read-only in vi and potentially
-modified, followed by re-encrypting the edited file and putting back to S3.  All temporary files are named on the
+This results in the encrypted file being fetched from S3, decrypted with GnuPG,
+opened [read-only in vi](http://vimdoc.sourceforge.net/htmldoc/starting.html#-R), followed by re-encrypting the
+possibly modified file and putting it back to S3.  All temporary files are named on the
 fly using _mktemp_ and are removed after the session using _rm -P ..._, where _-P_ overwrites the file data
 before the file is unlinked.  During encryption and decryption, GnuPG will prompt you for your passphrase when
 it needs it.
