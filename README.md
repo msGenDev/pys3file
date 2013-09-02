@@ -80,11 +80,16 @@ Here is a sample .amrc file
 
     BUCKET=thebucketname
     KEY=thes3key
-    RECIPIENT="Bob Loblaw"
+    RECIPIENT=449A021B1469A245A620953BCC1BBD5AD4359A93
 
 where the combination of  _BUCKET:KEY_ is where to store the file of interest and _RECIPIENT_ is the GnuPG
 recipient.  The recipient is a GnuPG concept and its value is used to select from your GnuPG keyring the
-public key with which to encrypt the file content.
+public key with which to encrypt the file content.  There are
+[a number of ways to specify a GnuPG user](http://www.gnupg.org/documentation/manuals/gnupg/Specify-a-User-ID.html#Specify-a-User-ID).
+Using the fingerprint of the public key you want to sign with as the value of the recipient is a good option because
+if you have a keyring with multiple keys with the same person name and/or
+email address, then you need an alternative method of specifying which key you want to use.  I use the public key
+fingerprint form.  Use _gpg --fingerprint_ to show your keys with fingerprints.
 
 Run _am.sh_ with no arguments:
 
