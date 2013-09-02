@@ -10,14 +10,14 @@ I installed boto like this on the Mac:
     sudo easy_install pip
     sudo pip install boto
 
-The utility assumes your AWS IAM credentials are stored in $HOME/.boto in the format
+The utility assumes an existing [AWS IAM user](http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_SettingUpUser.html)
+whose credentials are stored in $HOME/.boto in the format
 
     [Credentials]
     aws_access_key_id = key
     aws_secret_access_key = secret
 
-The [AWS IAM user](http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_SettingUpUser.html) that this utility
-assumes must have the following permissions at the user (not bucket) level.
+The AWS IAM user must have the following permissions at the user (not bucket) level.
 Assuming [the bucket exists](http://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html) and its name
 is _thebucket_, for object read/write within the bucket
 
@@ -71,7 +71,7 @@ by _--file_.
 
 Also included is a shell script _am.sh_ that wraps the file transfer utility above to manage an encrypted text file of
 interest.  Use of  _am.sh_ requires [GnuPG Privacy Guard](http://www.gnupg.org) be installed,
-that you have at least one GnuPG keypair, and that a $HOME/.amrc file exists holding the bucket, key, and
+that you have at least one GnuPG keypair, and that a $HOME/.amrc file exists holding the values for bucket name, key, and
 GnuPG recipient.
 
 Here is a sample .amrc file
@@ -92,5 +92,5 @@ This results in the encrypted file being fetched from S3, decrypted with GnuPG,
 opened [read-only in vi](http://vimdoc.sourceforge.net/htmldoc/starting.html#-R), followed by re-encrypting the
 possibly modified file and putting it back to S3.  All temporary files are named on the
 fly using _mktemp_ and are removed after the session using _rm -P ..._, where _-P_ overwrites the file data
-before the file is unlinked.  During encryption and decryption, GnuPG will prompt you for your passphrase when
+before the file is unlinked.  During encryption, GnuPG will prompt you for your passphrase when
 it needs it.
