@@ -71,10 +71,10 @@ by _--file_.
 
 Also included is a shell script _am.sh_ that wraps the file transfer utility above to manage an encrypted text file of
 interest.  Use of  _am.sh_ requires [GnuPG Privacy Guard](http://www.gnupg.org) be installed,
-that you have at least one GnuPG keypair, and that a $HOME/.bucketrc file exists holding the bucket, key, and
+that you have at least one GnuPG keypair, and that a $HOME/.amrc file exists holding the bucket, key, and
 GnuPG recipient.
 
-Here is a sample .bucketrc file
+Here is a sample .amrc file
 
     BUCKET=thebucketname
     KEY=thes3key
@@ -88,7 +88,7 @@ Run am.sh with no arguments:
 
     am.sh
 
-This results in the encrypted file being fetched from S3, decrypted with GnuPG, opened in vi and potentially
+This results in the encrypted file being fetched from S3, decrypted with GnuPG, opened read-only in vi and potentially
 modified, followed by re-encrypting the edited file and putting back to S3.  All temporary files are named on the
 fly using _mktemp_ and are removed after the session using _rm -P ..._, where _-P_ overwrites the file data
 before the file is unlinked.  During encryption and decryption, GnuPG will prompt you for your passphrase when
