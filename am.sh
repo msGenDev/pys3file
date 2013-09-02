@@ -16,7 +16,7 @@ DECRYPTED_FILE=$(mktemp /tmp/am.XXXX)
 source $HOME/.amrc
 ./s3file.py --get --bucket ${BUCKET} --key ${KEY} --file ${DOWNLOAD_FILE}
 gpg --yes --output ${DECRYPTED_FILE} --decrypt ${DOWNLOAD_FILE}
-vi -R -n -f ${DECRYPTED_FILE}
+view ${DECRYPTED_FILE}
 gpg --recipient "${RECIPIENT}" --encrypt ${DECRYPTED_FILE}
 ./s3file.py --put --bucket ${BUCKET} --key ${KEY} --file "${DECRYPTED_FILE}.gpg"
 cleanup
