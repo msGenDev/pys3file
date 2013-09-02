@@ -13,7 +13,7 @@ type gpg > /dev/null
 DOWNLOAD_FILE=$(mktemp /tmp/am.XXXX)
 DECRYPTED_FILE=$(mktemp /tmp/am.XXXX)
 
-source $HOME/.bucketrc
+source $HOME/.amrc
 ./s3file.py --get --bucket ${BUCKET} --key ${KEY} --file ${DOWNLOAD_FILE}
 gpg --yes --output ${DECRYPTED_FILE} --decrypt ${DOWNLOAD_FILE}
 vi -R -n -f ${DECRYPTED_FILE}
