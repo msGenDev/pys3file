@@ -56,6 +56,9 @@ is _thebucket_, for object read/write within the bucket
       ]
     }
 
+It's unlikely you can cut and paste these permissions, as they appear to have unique statement IDs.  But they give
+you an idea of what the permissions should look like beyond those IDs.
+
 Usage for uploading looks like
 
     s3file.py --put --file /tmp/foo.txt --bucket thebucket --key thekey
