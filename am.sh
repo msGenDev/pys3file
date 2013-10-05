@@ -25,7 +25,7 @@ source $HOME/.amrc
 ./s3file.py --get --bucket ${BUCKET} --key ${KEY} --file ${DOWNLOAD_FILE}
 gpg --yes --output ${DECRYPTED_FILE} --decrypt ${DOWNLOAD_FILE}
 HASH_BEFORE=$(sha1 ${DECRYPTED_FILE})
-view ${DECRYPTED_FILE}
+vi ${DECRYPTED_FILE}
 HASH_AFTER=$(sha1 ${DECRYPTED_FILE})
 if [ $HASH_BEFORE != $HASH_AFTER ]; then
    gpg --recipient "${RECIPIENT}" --encrypt ${DECRYPTED_FILE}
